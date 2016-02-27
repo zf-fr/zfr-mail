@@ -4,7 +4,7 @@ namespace ZfrMail\Mail;
 
 /**
  * Simple interface for a mail
- * 
+ *
  * @author Michaël Gallego
  */
 interface MailInterface
