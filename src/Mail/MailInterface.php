@@ -70,6 +70,21 @@ interface MailInterface
     public function getBcc(): array;
 
     /**
+     * Set a "reply-to" address and return a new mail
+     *
+     * @param  string $replyTo
+     * @return static
+     */
+    public function withReplyTo(string $replyTo): MailInterface;
+
+    /**
+     * Get the "reply-to"
+     *
+     * @return string
+     */
+    public function getReplyTo(): string;
+
+    /**
      * Add a new attachment to a given mail
      *
      * @param  AttachmentInterface $attachment

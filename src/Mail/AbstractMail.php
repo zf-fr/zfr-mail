@@ -28,6 +28,11 @@ abstract class AbstractMail implements MailInterface
     private $bcc = [];
 
     /**
+     * @var string
+     */
+    private $replyTo = '';
+
+    /**
      * @var AttachmentInterface[]
      */
     private $attachments = [];
@@ -111,6 +116,25 @@ abstract class AbstractMail implements MailInterface
     public function getBcc(): array
     {
         return $this->bcc;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withReplyTo(string $replyTo): MailInterface
+    {
+        $new = clone $this;
+        $new->replyTo = $replyTo;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getReplyTo(): string
+    {
+        return $this->replyTo;
     }
 
     /**

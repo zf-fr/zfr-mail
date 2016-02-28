@@ -79,10 +79,11 @@ class PostmarkMailer implements MailerInterface
     private function getRequestOptions(MailInterface $mail): array
     {
         $requestOptions = [
-            'From' => $mail->getFrom(),
-            'To'   => $mail->getTo(),
-            'Cc'   => implode(',', $mail->getCc()),
-            'Bcc'  => implode(',', $mail->getBcc()),
+            'From'    => $mail->getFrom(),
+            'To'      => $mail->getTo(),
+            'Cc'      => implode(',', $mail->getCc()),
+            'Bcc'     => implode(',', $mail->getBcc()),
+            'ReplyTo' => $mail->getReplyTo()
         ];
 
         foreach ($mail->getAttachments() as $attachment) {
@@ -121,7 +122,7 @@ class PostmarkMailer implements MailerInterface
      */
     private function filterPostmarkOptions(array $options): array
     {
-        $validKeys = ['Tag', 'ReplyTo', 'Headers', 'TrackOpens', 'InlineCss'];
+        $validKeys = ['Tag', 'Headers', 'TrackOpens', 'InlineCss'];
 
         return array_intersect_key($options, array_flip($validKeys));
     }

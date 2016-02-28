@@ -58,7 +58,6 @@ you are using Postmark, the accepted options are (we're following Postmark conve
 * `InlineCss`
 * `TrackOpens`
 * `Headers`
-* `ReplyTo`
 
 ### Configuring a mailer
 
