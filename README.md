@@ -51,6 +51,15 @@ $mail = (new RenderedMail())->withFrom('from@test.com')
     ->withTemplateVariables(['first_name' => 'Foo']);
 ```
 
+Mail can also accepts options. Those options are specific to the mail provider your using. For instance, if
+you are using Postmark, the accepted options are (we're following Postmark convention on naming to make it easy):
+
+* `Tag`
+* `InlineCss`
+* `TrackOpens`
+* `Headers`
+* `ReplyTo`
+
 ### Configuring a mailer
 
 For now, ZfrMail provides integration with Postmark only. In order to configure Postmark, add the following code
@@ -77,6 +86,12 @@ You can now inject the `ZfrMail\Mailer\PostmarkMailer` class into your services.
 $mailer->send($mail);
 ```
 
+> ZfrMail is meant to be a lightweight solution with minimal overhead. As a consequence, it does not any validation
+to check whether your email addresses are valid, or if you are properly formatting the options according to your
+chosen provider.
+
 ## To-do
 
 * Add more providers
+* Better error support (for now it will throw Guzzle exceptions, but we may create some pre-defined exceptions
+in the future and extract those from the Guzzle error)
