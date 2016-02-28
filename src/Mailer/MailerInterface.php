@@ -20,5 +20,5 @@ interface MailerInterface
      * @param  TemplatedMailInterface $templatedMail
      * @return void
      */
-    public function setTemplatedMail(TemplatedMailInterface $templatedMail);
+    public function sendTemplatedMail(TemplatedMailInterface $templatedMail);
 }

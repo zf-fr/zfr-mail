@@ -18,7 +18,7 @@ interface TemplatedMailInterface extends MailInterface
      * Add a new template identifier
      *
      * @param  string $template
-     * @return TemplatedMailInterface
+     * @return static
      */
     public function withTemplate(string $template): TemplatedMailInterface;
 
@@ -33,7 +33,7 @@ interface TemplatedMailInterface extends MailInterface
      * Add template variables
      *
      * @param  array $templateVariables
-     * @return TemplatedMailInterface
+     * @return static
      */
     public function withTemplateVariables(array $templateVariables): TemplatedMailInterface;
 

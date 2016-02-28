@@ -13,7 +13,7 @@ interface MailInterface
      * Add a new "from" address and return a new mail
      *
      * @param  string $from
-     * @return MailInterface
+     * @return static
      */
     public function withFrom(string $from): MailInterface;
 
@@ -28,7 +28,7 @@ interface MailInterface
      * Add a new "to" address and return a new mail
      *
      * @param  string $to
-     * @return MailInterface
+     * @return static
      */
     public function withTo(string $to): MailInterface;
 
@@ -43,7 +43,7 @@ interface MailInterface
      * Add a new "cc" addresses and return a new mail
      *
      * @param  array $cc
-     * @return MailInterface
+     * @return static
      */
     public function withCc(array $cc): MailInterface;
 
@@ -58,7 +58,7 @@ interface MailInterface
      * Add a new "bcc" addresses and return a new mail
      *
      * @param  array $bcc
-     * @return MailInterface
+     * @return static
      */
     public function withBcc(array $bcc): MailInterface;
 
@@ -73,7 +73,7 @@ interface MailInterface
      * Set new options (the options are related to the mailer you use)
      *
      * @param  array $options
-     * @return MailInterface
+     * @return static
      */
     public function withOptions(array $options): MailInterface;
 
