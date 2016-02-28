@@ -2,7 +2,7 @@
 
 namespace ZfrMail\Mailer;
 
-use ZfrMail\Mail\MailInterface;
+use ZfrMail\Mail\RenderedMailInterface;
 use ZfrMail\Mail\TemplatedMailInterface;
 
 /**
@@ -11,12 +11,16 @@ use ZfrMail\Mail\TemplatedMailInterface;
 interface MailerInterface
 {
     /**
-     * @param  MailInterface $mail
+     * Send an email rendered manually
+     *
+     * @param  RenderedMailInterface $mail
      * @return void
      */
-    public function sendMail(MailInterface $mail);
+    public function sendMail(RenderedMailInterface $mail);
 
     /**
+     * Send a templated email (for providers that support it)
+     *
      * @param  TemplatedMailInterface $templatedMail
      * @return void
      */

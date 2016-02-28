@@ -70,6 +70,21 @@ interface MailInterface
     public function getBcc(): array;
 
     /**
+     * Add a new attachment to a given mail
+     *
+     * @param  AttachmentInterface $attachment
+     * @return static
+     */
+    public function withAttachment(AttachmentInterface $attachment): MailInterface;
+
+    /**
+     * Get list of all attachments
+     *
+     * @return AttachmentInterface[]
+     */
+    public function getAttachments(): array;
+
+    /**
      * Set new options (the options are related to the mailer you use)
      *
      * @param  array $options

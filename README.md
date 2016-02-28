@@ -17,3 +17,5 @@ Installation of ZfrMail is only officially supported using Composer:
 ```sh
 php composer.phar require 'zfr/zfr-mail:1.*'
 ```
+
+## To-do

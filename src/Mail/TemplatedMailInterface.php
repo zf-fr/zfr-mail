@@ -38,7 +38,7 @@ interface TemplatedMailInterface extends MailInterface
     public function withTemplateVariables(array $templateVariables): TemplatedMailInterface;
 
     /**
-     * Get the template varaibles
+     * Get the template variables
      *
      * @return array
      */
