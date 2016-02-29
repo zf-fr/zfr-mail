@@ -45,7 +45,7 @@ $mail = (new RenderedMail())->withFrom('from@test.com')
 And a templated email:
 
 ```php
-$mail = (new RenderedMail())->withFrom('from@test.com')
+$mail = (new TemplatedMail())->withFrom('from@test.com')
     ->withTo('to@test.com')
     ->withTemplate('templ-1234')
     ->withTemplateVariables(['first_name' => 'Foo']);

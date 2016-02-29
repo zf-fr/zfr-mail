@@ -140,10 +140,21 @@ abstract class AbstractMail implements MailInterface
     /**
      * {@inheritDoc}
      */
-    public function withAttachment(AttachmentInterface $attachment): MailInterface
+    public function withAddedAttachment(AttachmentInterface $attachment): MailInterface
     {
         $new = clone $this;
         $new->attachments[] = $attachment;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withAttachments(array $attachments): MailInterface
+    {
+        $new = clone $this;
+        $new->attachments = $attachments;
 
         return $new;
     }

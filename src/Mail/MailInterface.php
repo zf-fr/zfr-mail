@@ -90,7 +90,15 @@ interface MailInterface
      * @param  AttachmentInterface $attachment
      * @return static
      */
-    public function withAttachment(AttachmentInterface $attachment): MailInterface;
+    public function withAddedAttachment(AttachmentInterface $attachment): MailInterface;
+
+    /**
+     * A multiple attachments at once
+     *
+     * @param  AttachmentInterface[] $attachments
+     * @return static
+     */
+    public function withAttachments(array $attachments): MailInterface;
 
     /**
      * Get list of all attachments

@@ -55,7 +55,7 @@ class PostmarkMailer implements MailerInterface
             'headers' => [
                 'X-Postmark-Server-Token' => $this->serverToken
             ],
-            'json' => array_filter($this->getRequestOptions($mail))
+            'json' => $this->getRequestOptions($mail)
         ]);
     }
 
@@ -68,7 +68,7 @@ class PostmarkMailer implements MailerInterface
             'headers' => [
                 'X-Postmark-Server-Token' => $this->serverToken
             ],
-            'json' => array_filter($this->getRequestOptions($mail))
+            'json' => $this->getRequestOptions($mail)
         ]);
     }
 
@@ -113,7 +113,7 @@ class PostmarkMailer implements MailerInterface
             ]);
         }
 
-        return $requestOptions;
+        return array_filter($requestOptions);
     }
 
     /**

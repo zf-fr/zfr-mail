@@ -5,6 +5,8 @@ use ZfrMail\Mailer\PostmarkMailer;
 
 return [
     'dependencies' => [
-        PostmarkMailer::class => PostmarkMailerFactory::class
+        'factories' => [
+            PostmarkMailer::class => PostmarkMailerFactory::class
+        ]
     ],
 ];
