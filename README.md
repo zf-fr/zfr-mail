@@ -51,7 +51,7 @@ $mail = (new RenderedMail())->withFrom('from@test.com')
     ->withTemplateVariables(['first_name' => 'Foo']);
 ```
 
-Mail can also accepts options. Those options are specific to the mail provider your using. For instance, if
+Mail can also accepts options. Those options are specific to the mail provider you're using. For instance, if
 you are using Postmark, the accepted options are (we're following Postmark convention on naming to make it easy):
 
 * `Tag`
