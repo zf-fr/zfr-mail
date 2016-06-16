@@ -18,13 +18,13 @@
 
 namespace ZfrMailTest;
 
-use ZfrMail\ModuleConfig;
+use ZfrMail\ConfigProvider;
 
-class ModuleConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigProviderTest extends \PHPUnit_Framework_TestCase
 {
     public function testConfig()
     {
-        $config = (new ModuleConfig())->__invoke();
+        $config = (new ConfigProvider())->__invoke();
 
         $this->assertArrayHasKey('dependencies', $config);
         $this->assertArrayHasKey('zfr_mail', $config);

@@ -40,5 +40,10 @@
         "cs": "phpcs",
         "cs-fix": "phpcbf",
         "test": "phpunit"
+    },
+    "extra": {
+        "zf": {
+            "config-provider": "ZfrMail\\ConfigProvider"
+        }
     }
 }

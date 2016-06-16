@@ -26,7 +26,7 @@ namespace ZfrMail;
  *
  * @author Michaël Gallego
  */
-class ModuleConfig
+class ConfigProvider
 {
     /**
      * @return array
