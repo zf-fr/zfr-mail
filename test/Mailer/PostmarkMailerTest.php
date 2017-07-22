@@ -3,6 +3,8 @@
 namespace ZfrMailTest\Mailer;
 
 use GuzzleHttp\ClientInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use ZfrMail\Mail\Attachment;
 use ZfrMail\Mail\RenderedMail;
 use ZfrMail\Mail\TemplatedMail;
@@ -65,9 +67,13 @@ class PostmarkMailerTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $this->client->request('post', 'https://api.postmarkapp.com/email', $params)->shouldBeCalled();
+        $response = $this->createResponse();
 
-        $this->mailer->send($renderedMail);
+        $this->client->request('post', 'https://api.postmarkapp.com/email', $params)->shouldBeCalled()->willReturn($response);
+
+        $messageId = $this->mailer->send($renderedMail);
+
+        $this->assertEquals('test', $messageId);
     }
 
     public function testCanSendTemplatedMail()
@@ -102,8 +108,23 @@ class PostmarkMailerTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $this->client->request('post', 'https://api.postmarkapp.com/email/withTemplate', $params)->shouldBeCalled();
+        $response = $this->createResponse();
 
-        $this->mailer->send($templatedEmail);
+        $this->client->request('post', 'https://api.postmarkapp.com/email/withTemplate', $params)->shouldBeCalled()->willReturn($response);
+
+        $messageId = $this->mailer->send($templatedEmail);
+
+        $this->assertEquals('test', $messageId);
+    }
+
+    private function createResponse(): ResponseInterface
+    {
+        $stream = $this->prophesize(StreamInterface::class);
+        $stream->getContents()->shouldBeCalled()->willReturn('{"MessageID": "test"}');
+
+        $response = $this->prophesize(ResponseInterface::class);
+        $response->getBody()->shouldBeCalled()->willReturn($stream->reveal());
+
+        return $response->reveal();
     }
 }

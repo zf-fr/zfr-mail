@@ -3,7 +3,7 @@
 namespace ZfrMail\Container;
 
 use GuzzleHttp\Client as HttpClient;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use ZfrMail\Exception\RuntimeException;
 use ZfrMail\Mailer\PostmarkMailer;
 

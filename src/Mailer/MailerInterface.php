@@ -16,7 +16,7 @@ interface MailerInterface
      * choose the right HTTP resource for the given provider
      *
      * @param  MailInterface $mail
-     * @return void
+     * @return mixed An optional message ID from the external provider (if supported)
      */
     public function send(MailInterface $mail);
 }

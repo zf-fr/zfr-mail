@@ -3,6 +3,7 @@
 namespace ZfrMail\Mailer;
 
 use GuzzleHttp\ClientInterface;
+use Psr\Http\Message\ResponseInterface;
 use ZfrMail\Mail\MailInterface;
 use ZfrMail\Mail\RenderedMailInterface;
 use ZfrMail\Mail\TemplatedMailInterface;
@@ -40,18 +41,21 @@ class PostmarkMailer implements MailerInterface
     public function send(MailInterface $mail)
     {
         if ($mail instanceof RenderedMailInterface) {
-            $this->sendRenderedMail($mail);
+            $response = $this->sendRenderedMail($mail);
         } elseif ($mail instanceof TemplatedMailInterface) {
-            $this->sendTemplatedMail($mail);
+            $response = $this->sendTemplatedMail($mail);
         }
+
+        // We return the internal message ID of Postmark, as per interface
+        return json_decode($response->getBody()->getContents(), true)['MessageID'];
     }
 
     /**
      * {@inheritDoc}
      */
-    private function sendRenderedMail(RenderedMailInterface $mail)
+    private function sendRenderedMail(RenderedMailInterface $mail): ResponseInterface
     {
-        $this->httpClient->request('post', self::POSTMARK_BASE_API . '/email', [
+        return $this->httpClient->request('post', self::POSTMARK_BASE_API . '/email', [
             'headers' => [
                 'X-Postmark-Server-Token' => $this->serverToken
             ],
@@ -62,9 +66,9 @@ class PostmarkMailer implements MailerInterface
     /**
      * {@inheritDoc}
      */
-    private function sendTemplatedMail(TemplatedMailInterface $mail)
+    private function sendTemplatedMail(TemplatedMailInterface $mail): ResponseInterface
     {
-        $this->httpClient->request('post', self::POSTMARK_BASE_API . '/email/withTemplate', [
+        return $this->httpClient->request('post', self::POSTMARK_BASE_API . '/email/withTemplate', [
             'headers' => [
                 'X-Postmark-Server-Token' => $this->serverToken
             ],
