@@ -93,7 +93,9 @@ class AwsSesMailer implements MailerInterface
                 $requestOptions,
                 [
                     'Message' => [
-                        'Subject' => $mail->getSubject(),
+                        'Subject' => [
+                            'Data' => $mail->getSubject(),
+                        ],
                         'Body' => [
                             'Text' => [
                                 'Data' => $mail->getTextBody(),
