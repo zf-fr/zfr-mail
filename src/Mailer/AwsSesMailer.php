@@ -7,6 +7,7 @@ namespace ZfrMail\Mailer;
 use Aws\Result;
 use Aws\Ses\SesClient;
 use ZfrMail\Exception\InvalidArgumentException;
+use ZfrMail\Exception\RuntimeException;
 use ZfrMail\Mail\MailInterface;
 use ZfrMail\Mail\RenderedMailInterface;
 use ZfrMail\Mail\TemplatedMailInterface;
@@ -42,6 +43,17 @@ class AwsSesMailer implements MailerInterface
      */
     public function send(MailInterface $mail)
     {
+        $countRecipients = $this->countRecipients($mail);
+        if ($countRecipients > self::RECIPIENT_LIMIT) {
+            throw new RuntimeException(
+                sprintf(
+                    'You have exceeded limitation for Amazon SES count recipients (%s maximum, %s given)',
+                    self::RECIPIENT_LIMIT,
+                    $countRecipients
+                )
+            );
+        }
+
         if ($mail instanceof RenderedMailInterface) {
             $result = $this->sendRenderedMail($mail);
         } elseif ($mail instanceof TemplatedMailInterface) {
@@ -118,5 +130,19 @@ class AwsSesMailer implements MailerInterface
         }
 
         return array_filter($requestOptions);
+    }
+
+    /**
+     * @param MailInterface $mail
+     *
+     * @return int
+     */
+    private function countRecipients(MailInterface $mail) : int
+    {
+        $countRecipients = count(explode(',', $mail->getTo()));
+        $countRecipients += count($mail->getCc());
+        $countRecipients += count($mail->getBcc());
+
+        return $countRecipients;
     }
 }

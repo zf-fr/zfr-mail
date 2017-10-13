@@ -6,6 +6,7 @@ use Aws\Result;
 use Aws\Ses\SesClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use ZfrMail\Exception\RuntimeException;
 use ZfrMail\Mail\RenderedMail;
 use ZfrMail\Mail\TemplatedMail;
 use ZfrMail\Mailer\AwsSesMailer;
@@ -31,10 +32,25 @@ class AwsSesMailerTest extends TestCase
         $this->mailer = new AwsSesMailer($this->sesClient->reveal());
     }
 
+    public function testThrowExceptionWhenTooManyRecipients()
+    {
+        $this->expectException(RuntimeException::class);
+
+        $bcc = [];
+        for ($i = 0; $i < 51; $i++) {
+            $bcc[] = "bcc$i@gmail.com";
+        }
+
+        $renderedMail = (new RenderedMail())->withTo('to@gmail.com')
+                                     ->withBcc($bcc)
+                                     ->withCc(['cc1@gmail.com', 'cc2@gmail.com']);
+
+        $this->mailer->send($renderedMail);
+    }
+
     public function testCanSendRenderedMail()
     {
-        $renderedMail = new RenderedMail();
-        $renderedMail = $renderedMail->withSubject('Hello')
+        $renderedMail = (new RenderedMail())->withSubject('Hello')
                                      ->withFrom('from@gmail.com')
                                      ->withTo('to@gmail.com')
                                      ->withBcc(['bcc1@gmail.com', 'bcc2@gmail.com'])
@@ -54,8 +70,7 @@ class AwsSesMailerTest extends TestCase
 
     public function testCanSendTemplatedMail()
     {
-        $templatedEmail = new TemplatedMail();
-        $templatedEmail = $templatedEmail->withTemplate('template-123')
+        $templatedEmail = (new TemplatedMail())->withTemplate('template-123')
                                          ->withTemplateVariables(['foo' => 'bar'])
                                          ->withFrom('from@gmail.com')
                                          ->withTo('to@gmail.com')
