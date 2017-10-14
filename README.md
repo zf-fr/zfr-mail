@@ -77,7 +77,7 @@ return [
 ```
 The server token can be found in your Postmark account.
 
-####Amazon SES
+#### Amazon SES
 In order to configure Amazon SES, add the following code to your config:
 ```php
 return [
