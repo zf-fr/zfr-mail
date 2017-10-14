@@ -2,7 +2,7 @@
 
 namespace ZfrMail\Container;
 
-use Aws\Ses\SesClient;
+use Aws\Sdk;
 use Psr\Container\ContainerInterface;
 use ZfrMail\Mailer\AwsSesMailer;
 
@@ -13,8 +13,8 @@ class AwsSesMailerFactory
 {
     public function __invoke(ContainerInterface $container) : AwsSesMailer
     {
-        $sesClient = $container->get(SesClient::class);
+        $awsSdk = $container->get(Sdk::class);
 
-        return new AwsSesMailer($sesClient);
+        return new AwsSesMailer($awsSdk->createSes());
     }
 }

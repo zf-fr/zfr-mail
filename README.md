@@ -81,20 +81,19 @@ The server token can be found in your Postmark account.
 In order to configure Amazon SES, add the following code to your config:
 ```php
 return [
-    'zfr_mail' => [
-        'aws_ses' => [
-            'credentials' => [
-                'key' => 'YOUR_AWS_KEY',
-                'secret' => 'YOUR_AWS_SECRET'
-            ],
-            'region' => 'YOUR_AWS_REGION',
-            'version' => 'AWS_VERSION' // most of the time 'latest'
+    'aws' => [
+        'credentials' => [
+            'key' => 'YOUR_AWS_KEY',
+            'secret' => 'YOUR_AWS_SECRET'
         ],
+        'region' => 'YOUR_AWS_REGION',
+        'version' => 'AWS_VERSION' // most of the time 'latest'
     ],
 ];
 ```
-You have to had this dependency in order to use Amazon SES :
+You have to had those dependencies in order to use Amazon SES :
 ```ssh
+php composer.phar require 'zfr/zfr-aws-utils'
 php composer.phar require 'aws/aws-sdk-php:^3.36'
 ```
 

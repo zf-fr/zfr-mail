@@ -25,15 +25,15 @@
     "require": {
         "php": "^7.0",
         "guzzlehttp/guzzle": "^6.0",
-        "psr/container": "^1.0"
+        "psr/container": "^1.0",
+        "zfr/zfr-aws-utils": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.2",
-        "squizlabs/php_codesniffer": "^2.3",
-        "aws/aws-sdk-php": "^3.36"
+        "squizlabs/php_codesniffer": "^2.3"
     },
     "suggest": {
-        "aws/aws-sdk-php" : "If you need to use Amazon SES"
+        "zfr/zfr-aws-utils": "If you need to use Amazon SES"
     },
     "autoload": {
         "psr-4": {

@@ -7,10 +7,10 @@ return [
          */
 
         'postmark' => [],
-
-        /**
-         * Amazon SES config
-         */
-        'aws_ses' => [],
     ],
+
+    /**
+     * Amazon config
+     */
+    'aws' => [],
 ];
