@@ -61,8 +61,10 @@ you are using Postmark, the accepted options are (we're following Postmark conve
 
 ### Configuring a mailer
 
-For now, ZfrMail provides integration with Postmark only. In order to configure Postmark, add the following code
-to your config:
+For now, ZfrMail provides integration with Postmark and Amazon SES.
+
+#### Postmark
+In order to configure Postmark, add the following code to your config:
 
 ```php
 return [
@@ -73,12 +75,28 @@ return [
     ],
 ];
 ```
-
 The server token can be found in your Postmark account.
+
+####Amazon SES
+In order to configure Amazon SES, add the following code to your config:
+```php
+return [
+    'zfr_mail' => [
+        'aws_ses' => [
+            'credentials' => [
+                'key' => 'YOUR_AWS_KEY',
+                'secret' => 'YOUR_AWS_SECRET
+            ],
+            'region' => 'YOUR_AWS_REGION',
+            'version' => 'AWS_VERSION' // most of the time 'latest'
+        ],
+    ],
+];
+```
 
 ### Using the mailer
 
-You can now inject the `ZfrMail\Mailer\PostmarkMailer` class into your services. This class comes with a single
+You can now inject the `ZfrMail\Mailer\PostmarkMailer` or `ZfrMail\Mailer\AwsSesMailer` class into your services. Those class comes with a single
 `send` method. The mailer will automatically either send a templated or rendered mail for you:
 
 ```php
