@@ -14,8 +14,8 @@ install:
   - travis_retry composer install --no-interaction --ignore-platform-reqs --prefer-source --no-scripts
 
 script:
-  - ./bin/phpunit
-  - ./bin/phpcs
+  - ./vendor/bin/phpunit
+  - ./vendor/bin/phpcs
 
 notifications:
   email: true

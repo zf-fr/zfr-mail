@@ -93,6 +93,10 @@ return [
     ],
 ];
 ```
+You have to had this dependency in order to use Amazon SES :
+```ssh
+php composer.phar require 'aws/aws-sdk-php:^3.36'
+```
 
 ### Using the mailer
 

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace ZfrMail\Mailer;
 
 use Aws\Result;
@@ -17,7 +15,6 @@ use ZfrMail\Mail\TemplatedMailInterface;
  */
 class AwsSesMailer implements MailerInterface
 {
-
     /**
      * SES supports a maximum of 50 recipients per messages
      */

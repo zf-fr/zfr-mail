@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace ZfrMail\Container;
 
 use Aws\Ses\SesClient;
