@@ -94,11 +94,20 @@ class AwsSesMailer implements MailerInterface
             'Source' => $mail->getFrom(),
             'Destination' => [
                 'ToAddresses' => explode(',', $mail->getTo()),
-                'CcAddresses' => $mail->getCc(),
-                'BccAddresses' => $mail->getBcc(),
             ],
-            'ReplyToAddresses' => explode(',', $mail->getReplyTo()),
         ];
+
+        if (! empty($mail->getCc())) {
+            $requestOptions['Destination']['CcAddresses'] = $mail->getCc();
+        }
+
+        if (! empty($mail->getBcc())) {
+            $requestOptions['Destination']['BccAddresses'] = $mail->getBcc();
+        }
+
+        if ($mail->getReplyTo()) {
+            $requestOptions['ReplyToAddresses'] = explode(',', $mail->getReplyTo());
+        }
 
         if ($mail instanceof RenderedMailInterface) {
             $requestOptions = array_merge(
