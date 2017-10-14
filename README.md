@@ -77,7 +77,7 @@ return [
 ```
 The server token can be found in your Postmark account.
 
-####Amazon SES
+#### Amazon SES
 In order to configure Amazon SES, add the following code to your config:
 ```php
 return [
@@ -85,7 +85,7 @@ return [
         'aws_ses' => [
             'credentials' => [
                 'key' => 'YOUR_AWS_KEY',
-                'secret' => 'YOUR_AWS_SECRET
+                'secret' => 'YOUR_AWS_SECRET'
             ],
             'region' => 'YOUR_AWS_REGION',
             'version' => 'AWS_VERSION' // most of the time 'latest'
