@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.2.0 - 2017-10-16
+
+- Add provider for Amazon SES for sending RenderedMail and TemplatedMail
+
 ## 2.1.0 - 2017-07-22
 
 - Updated the container to use PSR interface.
