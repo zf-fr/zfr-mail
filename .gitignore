@@ -11,3 +11,4 @@ tmp/
 vendor/
 composer.lock
 composer.phar
+/bin

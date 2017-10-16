@@ -6,6 +6,11 @@ return [
          * Postmark config
          */
 
-        'postmark' => []
+        'postmark' => [],
     ],
+
+    /**
+     * Amazon config
+     */
+    'aws' => [],
 ];
