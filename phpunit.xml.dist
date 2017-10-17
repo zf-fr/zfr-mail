@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <phpunit bootstrap="./vendor/autoload.php" colors="true">
-    <testsuite name="ZfrEbWorker tests">
+    <testsuite name="ZfrMail tests">
         <directory>./test</directory>
     </testsuite>
     <filter>
